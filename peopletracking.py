@@ -20,13 +20,21 @@ if __name__ == '__main__':
 
     hog = cv2.HOGDescriptor()
     hog.setSVMDetector( cv2.HOGDescriptor_getDefaultPeopleDetector() )
-    cap=cv2.VideoCapture('vtest.avi')
+    # cap = cv2.VideoCapture('hans.mp4')
+    cap = cv2.VideoCapture(0)
+
+    # cap.open()
+    # cap = cv2.VideoCapture(4)
+
     while True:
         _,frame=cap.read()
+        _,frame2=cap.read()
         found,w=hog.detectMultiScale(frame, winStride=(8,8), padding=(32,32), scale=1.05)
         draw_detections(frame,found)
         cv2.imshow('feed',frame)
+        # cv2.imshow('video',frame2)
         ch = 0xFF & cv2.waitKey(1)
         if ch == 27:
             break
     cv2.destroyAllWindows()
+sys
